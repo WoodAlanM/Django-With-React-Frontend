@@ -1,0 +1,31 @@
+
+# Dockerfile for django-roulettech-backend
+FROM python:3.9-slim
+
+# Set environmental variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV LANG C.UTF-8
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+	gcc \
+	python3-dev \
+	libpq-dev
+
+# Copy requirements file
+COPY requirements.txt /app/
+
+# Install Python Dependencies
+RUN pip install --upgrade pip \
+	&& pip install --no-cache-dir -r requirements.txt
+
+# Copy project into the container
+COPY . /app/
+
+# Run django project
+CMD python3 manage.py runserver localhost:8000

@@ -1,0 +1,15 @@
+.app {
+    display: flex;
+}
+
+.homeContent {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
